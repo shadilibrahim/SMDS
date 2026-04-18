@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sharjah Motor Driving School — Drive Your Future</title>
+  <meta name="description"
+    content="Sharjah Motor Driving School — Professional driving lessons in Sharjah. Learn to drive with certified instructors. Book your trial session today." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ── Navigation ── -->
+  <nav class="nav" id="nav">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <div class="logo-icon">
+          <!-- Steering wheel icon -->
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <circle cx="12" cy="12" r="10" />
+            <circle cx="12" cy="12" r="3" />
+            <line x1="12" y1="2" x2="12" y2="9" />
+            <line x1="4.22" y1="16" x2="10.27" y2="12.75" />
+            <line x1="19.78" y1="16" x2="13.73" y2="12.75" />
+          </svg>
+        </div>
+        <span class="logo-text">SMDS</span>
+        <span class="logo-tagline">Sharjah Motor Driving School</span>
+      </div>
+      <div class="nav-links" id="navLinks">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#courses" class="nav-link">Courses</a>
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#testimonials" class="nav-link">Reviews</a>
+        <a href="#pricing" class="nav-link">Pricing</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
+      <div class="nav-actions">
+        <a href="tel:+97165650505" class="btn-nav-outline">Call Us</a>
+        <a href="#enroll" class="btn-nav-primary">Enroll Now</a>
+        <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── Hero / 3D Scroll Section ── -->
+  <section class="hero-scroll-section" id="hero">
+    <div class="hero-sticky">
+      <!-- Canvas for 3D scroll animation -->
+      <canvas id="heroCanvas" class="hero-canvas"></canvas>
+      <!-- Hero overlay text that fades out as car spins -->
+      <div class="hero-overlay" id="heroOverlay">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="badge-dot"></span>
+            SHARJAH MOTOR DRIVING SCHOOL - EST. 1980
+          </div>
+          <h1 class="hero-title">
+            Drive Your <br class="mobile-hide" />
+            <span class="hero-title-accent">Future</span>
+          </h1>
+          <p class="hero-subtitle">
+            Experience world-class driving education with Sharjah's most trusted motor school.
+            Expert instructors, modern vehicles, proven results.
+          </p>
+          <div class="hero-actions">
+            <a href="#enroll" class="btn-primary" id="heroCta">Contact Now</a>
+            <a href="#about" class="btn-outline">Learn More</a>
+          </div>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <div class="stat-val">
+                <span class="stat-num" data-target="15000">0</span>
+                <span class="stat-suffix">+</span>
+              </div>
+              <span class="stat-label">Graduates</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="hero-stat">
+              <div class="stat-val">
+                <span class="stat-num" data-target="95">0</span>
+                <span class="stat-suffix">%</span>
+              </div>
+              <span class="stat-label">Pass Rate</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="hero-stat">
+              <div class="stat-val">
+                <span class="stat-num" data-target="45">0</span>
+                <span class="stat-suffix">+</span>
+              </div>
+              <span class="stat-label">Years</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="car-reveal-text" id="carRevealText">
+        <div class="reveal-inner">
+          <span class="reveal-label">360° VIEW</span>
+          <h2 class="reveal-title">Meet Your<br /><span>Training Car</span></h2>
+          <p class="reveal-desc">A brand-new Nissan Sunny<br> ComfortableSafe, and Built for Learning</p>
+        </div>
+      </div>
+      <!-- Side Car Comparison Slider -->
+      <div class="car-slider" id="carSlider">
+        <img src="Asset/CAR.png" alt="Car Old" class="car-slider-before">
+        <div class="car-slider-after" id="carSliderAfter">
+          <img src="Asset/CAR 1.png" alt="Car New">
+        </div>
+        <span class="slider-badge badge-old">OLD</span>
+        <span class="slider-badge badge-new">NEW</span>
+        <div class="car-slider-handle" id="carSliderHandle">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </div>
+      </div>
+      <!-- Scroll hint -->
+      <div class="scroll-hint" id="scrollHint">
+        <div class="scroll-hint-line"></div>
+        <span>Scroll to Explore</span>
+        <div class="scroll-hint-line"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── About Section ── -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-badge">WHO WE ARE</div>
+      <h2 class="section-title">Shaping Confident <span class="accent">Drivers</span> Since 1980</h2>
+      <p class="section-subtitle">
+        Sharjah Motor Driving School has been a pioneer in professional driving education in the UAE.
+        Our certified instructors, modern fleet, and structured curriculum ensure every student
+        drives away with confidence and skill.
+      </p>
+      <div class="about-grid">
+        <div class="about-card reveal-card">
+          <div class="about-card-icon" style="--icon-color: #f0c419;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+          </div>
+          <h3>Safety First</h3>
+          <p>Every lesson prioritized with dual-control vehicles, certified safety-checked cars and comprehensive hazard
+            training.</p>
+        </div>
+        <div class="about-card reveal-card">
+          <div class="about-card-icon" style="--icon-color: #4fc3f7;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <circle cx="12" cy="8" r="6" />
+              <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
+            </svg>
+          </div>
+          <h3>RTA Certified</h3>
+          <p>Fully accredited by the Roads and Transport Authority. Our licenses are recognized across all UAE emirates.
+          </p>
+        </div>
+        <div class="about-card reveal-card">
+          <div class="about-card-icon" style="--icon-color: #81c784;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
+          </div>
+          <h3>Expert Instructors</h3>
+          <p>Multilingual instructors trained to international standards. English, Arabic, Hindi & Urdu support
+            available.</p>
+        </div>
+        <div class="about-card reveal-card">
+          <div class="about-card-icon" style="--icon-color: #ff8a65;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <rect x="2" y="3" width="20" height="14" rx="2" />
+              <path d="M8 21h8M12 17v4" />
+            </svg>
+          </div>
+          <h3>Digital Learning</h3>
+          <p>Online theory classes, mock test simulations and a digital progress tracker to ace your RTA theory exam.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Courses Section ── -->
+  <section class="section section-dark" id="courses">
+    <div class="container">
+      <div class="section-badge"
+        style="color: #f0c419; border-color: rgba(240,196,25,0.3); background: rgba(240,196,25,0.08);">OUR PROGRAMS
+      </div>
+      <h2 class="section-title" style="color: #fff;">Choose Your <span class="accent">Program</span></h2>
+      <p class="section-subtitle" style="color: rgba(255,255,255,0.6);">
+        Structured programs designed for every level — from first-time drivers to license upgrades.
+      </p>
+      <div class="courses-grid">
+        <div class="course-card">
+          <div class="course-number">01</div>
+          <div class="course-badge" style="color: #f0c419; background: rgba(240,196,25,0.1);">BEGINNER</div>
+          <h3 class="course-name">Automatic Transmission - AED 70 / Class</h3>
+          <p class="course-desc">Complete beginner program covering theory, road ethics, and practical driving sessions
+            on Sharjah roads.</p>
+          <ul class="course-features">
+            <li><span class="check-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg></span> 3 Hour Theory Classes</li>
+            <li><span class="check-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg></span> 30 Practical Sessions</li>
+            <li><span class="check-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg></span> RTA Theory Test Prep</li>
+            <li><span class="check-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg></span> Parking &amp; Highway Training</li>
+          </ul>
+          <a href="#enroll" class="btn-course">Enroll Now <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14m-7-7 7 7-7 7" />
+            </svg></a>
+        </div>
+        <div class="course-card course-popular">
+          <div class="popular-badge">MOST POPULAR</div>
+          <div class="course-number" style="color: #f0c419;">02</div>
+          <div class="course-badge" style="color: #f0c419; background: rgba(240,196,25,0.15);">STANDARD</div>
+          <h3 class="course-name">Manual Transmission - AED 60 / Class</h3>
+          <p class="course-desc">Master manual driving with clutch control, gear shifts, and advanced maneuver
+            techniques on UAE roads.</p>
+          <ul class="course-features">
+            <li><span class="check-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg></span> 3 Hour Theory + 30 Practical</li>
+            <li><span class="check-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg></span> Manual Gear Mastery</li>
+            <li><span class="check-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg></span> Highway Confidence Training</li>
+            <li><span class="check-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg></span> Parking &amp; Highway Training</li>
+          </ul>
+          <a href="#enroll" class="btn-course btn-course-primary">Enroll Now <svg width="14" height="14"
+              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14m-7-7 7 7-7 7" />
+            </svg></a>
+        </div>
+        <!-- <div class="course-card">
+          <div class="course-number">03</div>
+          <div class="course-badge" style="color: #4fc3f7; background: rgba(79,195,247,0.1);">ADVANCED</div>
+          <h3 class="course-name">Heavy License Upgrade</h3>
+          <p class="course-desc">Upgrade to heavy vehicle certification. Learn bus, truck and special vehicle operation
+            with our expert trainers.</p>
+          <ul class="course-features">
+            <li><span class="check-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg></span> Eye Test &amp; Medical</li>
+            <li><span class="check-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg></span> Heavy Vehicle Training</li>
+            <li><span class="check-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg></span> Refresher Sessions</li>
+            <li><span class="check-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg></span> Dedicated Road Test Slots</li>
+          </ul>
+          <a href="#enroll" class="btn-course">Enroll Now <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14m-7-7 7 7-7 7" />
+            </svg></a>
+        </div> -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Features / Methodology ── -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="features-layout">
+        <div class="features-content">
+          <div class="section-badge">WHY CHOOSE US</div>
+          <h2 class="section-title" style="text-align: left;">
+            A School That <span class="accent">Puts You First</span>
+          </h2>
+          <p class="section-subtitle" style="text-align: left; max-width: 480px;">
+            We don't just teach driving — we build responsible, confident road users who are ready for the real world.
+          </p>
+          <div class="method-list">
+            <div class="method-item">
+              <div class="method-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </div>
+              <div>
+                <h4>Flexible Scheduling</h4>
+                <p>Morning, afternoon and weekend slots to fit your lifestyle and work schedule.</p>
+              </div>
+            </div>
+            <div class="method-item">
+              <div class="method-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </div>
+              <div>
+                <h4>Modern Fleet</h4>
+                <p>Brand-new Nissan Sunny vehicles with dual controls, ABS brakes, and air conditioning.</p>
+              </div>
+            </div>
+            <div class="method-item">
+              <div class="method-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </div>
+              <div>
+                <h4>Digital Progress Tracking</h4>
+                <p>Track your lessons, scores and road test date from our student portal.</p>
+              </div>
+            </div>
+            <div class="method-item">
+              <div class="method-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </div>
+              <div>
+                <h4>Fast-Track Options</h4>
+                <p>Intensive programs for eligible candidates. Get licensed in weeks, not months.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="features-stats">
+          <div class="stat-box stat-box-1">
+            <div class="stat-box-num" data-target="15000" data-suffix="">0</div>
+            <div class="stat-box-label">Licensed Graduates</div>
+          </div>
+          <div class="stat-box stat-box-2">
+            <div class="stat-box-num" data-target="95" data-suffix="%">0%</div>
+            <div class="stat-box-label">First-Attempt Pass Rate</div>
+          </div>
+          <div class="stat-box stat-box-3">
+            <div class="stat-box-num" data-target="45" data-suffix="+">0+</div>
+            <div class="stat-box-label">Years of Excellence</div>
+          </div>
+          <div class="stat-box stat-box-4">
+            <div class="stat-box-num" data-target="20" data-suffix="+">0+</div>
+            <div class="stat-box-label">Expert Instructors</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Testimonials ── -->
+  <section class="section section-dark" id="testimonials">
+    <div class="container">
+      <div class="section-badge"
+        style="color: #f0c419; border-color: rgba(240,196,25,0.3); background: rgba(240,196,25,0.08);">STUDENT REVIEWS
+      </div>
+      <h2 class="section-title" style="color: #fff;">Real <span class="accent">Success Stories</span></h2>
+      <div class="testimonials-track-wrapper">
+        <div class="testimonials-track" id="testimonialsTrack">
+          <!-- Testimonials rendered by JS -->
+        </div>
+      </div>
+      <div class="test-dots" id="testDots"></div>
+    </div>
+  </section>
+
+  <!-- ── Pricing ── -->
+  <section class="section" id="pricing">
+    <div class="container">
+      <div class="section-badge">TRANSPARENT PRICING</div>
+      <h2 class="section-title">Simple, Clear <span class="accent">Packages</span></h2>
+      <div class="pricing-grid">
+        <div class="price-card">
+          <div class="price-card-top">
+            <h3>Trial Lesson</h3>
+            <div class="price-amount"><span class="currency">AED</span>150<span class="price-per"></span></div>
+            <p class="price-desc">Perfect to get a feel of our school and instructor quality before committing.</p>
+          </div>
+          <ul class="price-features">
+            <li><span class="check-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg></span> 1 Practical Session (45 min)</li>
+            <li><span class="check-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg></span> Instructor Assessment</li>
+            <li><span class="check-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg></span> School Tour</li>
+            <li><span class="check-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg></span> Program Consultation</li>
+          </ul>
+          <a href="#enroll" class="btn-price-outline">Book Trial</a>
+        </div>
+        <div class="price-card price-card-featured">
+          <div class="featured-label">BEST VALUE</div>
+          <div class="price-card-top">
+            <h3>Full License Package</h3>
+            <div class="price-amount"><span class="currency">AED</span>3,500<span class="price-per"> / per person</span>
+            </div>
+            <p class="price-desc">Complete end-to-end program until you get your UAE driving license.</p>
+          </div>
+          <ul class="price-features">
+            <li><span class="check-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg></span> All Theory &amp; Practical Classes</li>
+            <li><span class="check-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg></span> RTA File Opening</li>
+            <li><span class="check-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg></span> Eye Test &amp; Medical Included</li>
+            <li><span class="check-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg></span> Road Test Booking</li>
+            <li><span class="check-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg></span> Unlimited Mock Tests</li>
+          </ul>
+          <a href="#enroll" class="btn-price-primary">Get Started</a>
+        </div>
+        <div class="price-card">
+          <div class="price-card-top">
+            <h3>Refresher Course</h3>
+            <div class="price-amount"><span class="currency">AED</span>800<span class="price-per"></span></div>
+            <p class="price-desc">Already have experience? Our refresher sharpens your skills before the road test.</p>
+          </div>
+          <ul class="price-features">
+            <li><span class="check-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg></span> 8 Practical Sessions</li>
+            <li><span class="check-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg></span> Personalized Weak-Point Focus</li>
+            <li><span class="check-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg></span> Road Test Prep</li>
+            <li><span class="check-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg></span> Progress Report</li>
+          </ul>
+          <a href="#enroll" class="btn-price-outline">Book Now</a>
+        </div>
+      </div>
+      <p class="pricing-note">* Prices may vary based on license type and nationality. Contact us for a personalized
+        quote.</p>
+    </div>
+  </section>
+
+  <!-- ── Enroll CTA ── -->
+  <section class="section enroll-section" id="enroll">
+    <div class="container">
+      <div class="enroll-banner">
+        <div class="enroll-content">
+          <div class="section-badge" style="color: #000; border-color: rgba(0,0,0,0.2); background: rgba(0,0,0,0.08);">
+            GET STARTED TODAY</div>
+          <h2 class="enroll-title">Ready to Hit the <span>Road?</span></h2>
+          <p class="enroll-subtitle">Fill in your details and our team will contact you within 24 hours to schedule your
+            first session.</p>
+        </div>
+        <form class="enroll-form" id="enrollForm">
+          <div class="form-row">
+            <input type="text" placeholder="Your Full Name" required id="enrollName" />
+            <input type="tel" placeholder="Phone Number" required id="enrollPhone" />
+          </div>
+          <div class="form-row">
+            <input type="email" placeholder="Email Address" id="enrollEmail" />
+            <select id="enrollCourse">
+              <option value="">Select a Program</option>
+              <option>Car License (Light Motor)</option>
+              <option>Manual Transmission</option>
+              <option>Heavy License Upgrade</option>
+              <option>Trial Lesson</option>
+              <option>Refresher Course</option>
+            </select>
+          </div>
+          <button type="submit" class="btn-enroll" id="enrollBtn">
+            Submit Enquiry
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14m-7-7 7 7-7 7" />
+            </svg>
+          </button>
+          <div class="form-success" id="formSuccess" style="display:none;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="3">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+            Thank you! We'll contact you soon.
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Contact / Location ── -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section-badge">FIND US</div>
+      <h2 class="section-title">Our <span class="accent">Location</span></h2>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+            </div>
+            <div>
+              <div class="contact-label">Address</div>
+              <div class="contact-value">Sharjah Motor Driving School<br />Room No.25,<br> Nasserya Driving Scool
+                Complex,
+                <br>Sharjah - UAE
+              </div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path
+                  d="M22 16.92v3a2 2 0 01-2.18 2A19.79 19.79 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+              </svg>
+            </div>
+            <div>
+              <div class="contact-label">Phone</div>
+              <div class="contact-value"><a href="tel:065650505">06 56 50505</a></div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+            </div>
+            <div>
+              <div class="contact-label">Working Hours</div>
+              <div class="contact-value">Saturday – Thursday: 8:00 AM – 9:00 PM<br />Friday: 2:00 PM – 9:00 PM</div>
+            </div>
+          </div>
+          <a href="https://wa.me/97165000000" target="_blank" rel="noopener" class="whatsapp-btn">
+            <svg width="20" height="20" viewBox="0 0 448 512">
+              <path fill="currentColor"
+                d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.7 17.7 69.4 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.1 0-65.6-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.4-8.6-44.6-27.6-16.5-14.7-27.6-32.8-30.8-38.4-3.2-5.6-.3-8.6 2.5-11.4 2.5-2.5 5.5-6.5 8.3-9.7 2.8-3.2 3.7-5.5 5.5-9.2 1.9-3.7 1-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.8 23.5 9.2 31.5 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" />
+            </svg>
+            Chat on WhatsApp
+          </a>
+        </div>
+        <div class="contact-map">
+          <iframe title="Sharjah Motor Driving School Location"
+            src="https://www.google.com/maps?q=25.367131143727157,55.40459143009452&z=17&output=embed" width="100%"
+            height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">SMDS</div>
+          <p>Sharjah's most trusted driving school since 1980. RTA certified, professionally trained.</p>
+          <div class="footer-socials">
+            <a href="#" aria-label="Instagram" class="social-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="2" width="20" height="20" rx="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+              </svg>
+            </a>
+            <a href="#" aria-label="Facebook" class="social-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+              </svg>
+            </a>
+            <a href="#" aria-label="YouTube" class="social-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path
+                  d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
+                <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-links-group">
+          <h4>Programs</h4>
+          <ul>
+            <li><a href="#courses">Car License (Light)</a></li>
+            <li><a href="#courses">Manual Transmission</a></li>
+            <li><a href="#courses">International Driving Permit</a></li>
+            <li><a href="#courses">Trial Lesson</a></li>
+            <li><a href="#courses">Refresher Course</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-group">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#features">Why Choose Us</a></li>
+            <li><a href="#testimonials">Student Reviews</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-group">
+          <h4>Contact</h4>
+          <ul>
+            <li>Room No.25, Nasserya Driving Scool Complex, Sharjah</li>
+            <li><a href="tel:065650505">06 56 50505</a></li>
+            <li><a href="mailto:[EMAIL_ADDRESS]">[EMAIL_ADDRESS]</a></li>
+            <li>Sat–Thu: 8AM – 9PM</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Sharjah Motor Driving School. All rights reserved.</p>
+        <p>RTA Certified · UAE Licensed</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp -->
+  <a href="https://wa.me/971507858328" class="float-whatsapp" target="_blank" rel="noopener" title="Chat on WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 448 512">
+      <path fill="currentColor"
+        d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.7 17.7 69.4 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.1 0-65.6-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.4-8.6-44.6-27.6-16.5-14.7-27.6-32.8-30.8-38.4-3.2-5.6-.3-8.6 2.5-11.4 2.5-2.5 5.5-6.5 8.3-9.7 2.8-3.2 3.7-5.5 5.5-9.2 1.9-3.7 1-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.8 23.5 9.2 31.5 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" />
+    </svg>
+  </a>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
