@@ -526,6 +526,110 @@
     }, { passive: false });
   }
 
+  // ── Pricing Modal ──────────────────────────────────────────────────────────
+  function initPricingModal() {
+    const modal = document.getElementById('pricingModal');
+    const closeBtn = document.getElementById('pricingModalClose');
+    const modalContent = document.getElementById('pricingModalContent');
+    const buttons = document.querySelectorAll('.view-details-btn');
+    
+    if (!modal || !modalContent) return;
+
+    const tableData = {
+      emirati: {
+        title: "Emirati National Course",
+        desc: "Complete breakdown of fees for UAE Nationals.",
+        rows: [
+          { label: "10 Practical Classes (45 mins each)", price: "600 AED" },
+          { label: "Registration & Training Card", price: "125 AED" },
+          { label: "Final Exam Booking", price: "100 AED" }
+        ],
+        total: "825 AED"
+      },
+      beginner: {
+        title: "Comprehensive Beginner Course",
+        desc: "All-inclusive structure for first-time drivers.",
+        rows: [
+          { label: "File Opening", price: "240 AED" },
+          { label: "Eye Test", price: "100 AED" },
+          { label: "Theory Classes (via online)", price: "552.5 AED" },
+          { label: "Parking Stage (30 Classes)", price: "825 AED" },
+          { label: "Assessment Stage (15 Classes)", price: "1660 AED" },
+          { label: "Final Stage (10 Classes)", price: "1245 AED" }
+        ],
+        total: "4622 AED"
+      },
+      license: {
+        title: "License Holder Course",
+        desc: "Refresher package designed for individuals who hold a prior driving license.",
+        rows: [
+          { label: "5 Practical Classes (45 mins each)", price: "300 AED" },
+          { label: "File Opening & Registration", price: "400 AED" },
+          { label: "RTA Eye Test & Approval", price: "100 AED" },
+          { label: "Final Assessment", price: "77.5 AED" }
+        ],
+        total: "877.5 AED"
+      }
+    };
+
+    function renderTable(key) {
+      const data = tableData[key];
+      if(!data) return "";
+      
+      let rowsHtml = data.rows.map(row => 
+        `<tr>
+          <td>${row.label}</td>
+          <td style="text-align: right; color: #fff;">${row.price}</td>
+        </tr>`
+      ).join('');
+
+      return `
+        <h3>${data.title}</h3>
+        <p>${data.desc}</p>
+        <div class="pricing-table-wrapper">
+          <table class="pricing-modal-table">
+            <thead>
+              <tr>
+                <th>Fee Description</th>
+                <th style="text-align: right;">Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${rowsHtml}
+              <tr class="total-row">
+                <td>Grand Total</td>
+                <td style="text-align: right;">${data.total}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <a href="#enroll" class="btn-primary" onclick="document.getElementById('pricingModal').classList.remove('active'); document.body.style.overflow = '';">Enroll Now</a>
+      `;
+    }
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const key = btn.getAttribute('data-modal');
+        modalContent.innerHTML = renderTable(key);
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    closeBtn.addEventListener('click', () => {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+
   // ── Init ───────────────────────────────────────────────────────────────────
   function init() {
     resizeCanvas();
@@ -537,6 +641,7 @@
     initTestimonials();
     initEnrollForm();
     initCarSlider();
+    initPricingModal();
   }
 
   // Run on DOM ready
