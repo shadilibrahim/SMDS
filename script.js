@@ -539,36 +539,38 @@
       emirati: {
         title: "Emirati National Course",
         desc: "Complete breakdown of fees for UAE Nationals.",
+        headers: ["Stage", "No. Of Classes", "Classes Fee", "Registration", "Training Card", "Vat 5%", "Total", "Test Fee", "Grand Total"],
         rows: [
-          { label: "10 Practical Classes (45 mins each)", price: "600 AED" },
-          { label: "Registration & Training Card", price: "125 AED" },
-          { label: "Final Exam Booking", price: "100 AED" }
+          ["1st Time", "10 Classes", "600 AED", "100 AED", "105 AED", "20 AED", "525 AED", "300 AED", "825 AED"],
+          ["2nd Time", "10 Classes", "600 AED", "100 AED", "105 AED", "20 AED", "525 AED", "300 AED", "825 AED"]
         ],
-        total: "825 AED"
+        totalRowConfig: { label: "Total Cost", colspan: 8, val: "1650 AED" }
       },
       beginner: {
         title: "Comprehensive Beginner Course",
         desc: "All-inclusive structure for first-time drivers.",
+        headers: ["Stage", "No. Of Classes", "Classes Fee", "Registration", "Training Card", "Vat 5%", "Total", "Test Fee", "Grand Total"],
         rows: [
-          { label: "File Opening", price: "240 AED" },
-          { label: "Eye Test", price: "100 AED" },
-          { label: "Theory Classes (via online)", price: "552.5 AED" },
-          { label: "Parking Stage (30 Classes)", price: "825 AED" },
-          { label: "Assessment Stage (15 Classes)", price: "1660 AED" },
-          { label: "Final Stage (10 Classes)", price: "1245 AED" }
+          ["Parking", "30", "1800 AED", "100 AED", "105 AED", "25 AED", "525 AED", "300 AED", "825 AED"],
+          ["Assessment", "15", "900 AED", "200 AED", "105 AED", "55 AED", "1260 AED", "400 AED", "1660 AED"],
+          ["Final", "10", "600 AED", "200 AED", "105 AED", "40 AED", "945 AED", "300 AED", "1245 AED"]
         ],
-        total: "4622 AED"
+        initialFees: [
+          ["Eye Test", "100 AED"],
+          ["File Opening", "240 AED"],
+          ["Theory Test and Classes", "552.5 AED"]
+        ],
+        totalRowConfig: { label: "Total Complete Package (Including Initial Fees)", colspan: 8, val: "4622.5 AED" }
       },
       license: {
         title: "License Holder Course",
-        desc: "Refresher package designed for individuals who hold a prior driving license.",
+        desc: "For those who hold a prior driving license from another country.",
+        headers: ["Stage", "No. Of Classes", "Classes Fee", "Registration", "Training Card", "Vat 5%", "Total", "Test Fee", "Grand Total"],
         rows: [
-          { label: "5 Practical Classes (45 mins each)", price: "300 AED" },
-          { label: "File Opening & Registration", price: "400 AED" },
-          { label: "RTA Eye Test & Approval", price: "100 AED" },
-          { label: "Final Assessment", price: "77.5 AED" }
+          ["1st Time", "5", "300 AED", "250 AED", "105 AED", "27.5 AED", "682.5 AED", "N/A", "682.5 AED"],
+          ["2nd Time (Fail Case)", "5", "300 AED", "250 AED", "105 AED", "27.5 AED", "577.5 AED", "300 AED", "877.5 AED"]
         ],
-        total: "877.5 AED"
+        totalRowConfig: null
       }
     };
 
@@ -576,34 +578,53 @@
       const data = tableData[key];
       if(!data) return "";
       
+      let headerHtml = data.headers.map(th => `<th>${th}</th>`).join('');
+      
       let rowsHtml = data.rows.map(row => 
         `<tr>
-          <td>${row.label}</td>
-          <td style="text-align: right; color: #fff;">${row.price}</td>
+          ${row.map(cell => `<td>${cell}</td>`).join('')}
         </tr>`
       ).join('');
+
+      // Add extra initial fees block if present (for beginner)
+      let initialFeesHtml = "";
+      if (data.initialFees) {
+        initialFeesHtml = data.initialFees.map(fee => 
+          `<tr style="background: rgba(255,255,255,0.02);">
+            <td colspan="${data.headers.length - 1}" style="text-align: right; font-weight: 500;">${fee[0]}</td>
+            <td style="font-weight: 600; color: var(--yellow);">${fee[1]}</td>
+          </tr>`
+        ).join('');
+      }
+
+      let totalRowHtml = "";
+      if (data.totalRowConfig) {
+        totalRowHtml = `
+          <tr class="total-row">
+            <td colspan="${data.totalRowConfig.colspan}" style="text-align: right;">${data.totalRowConfig.label}</td>
+            <td>${data.totalRowConfig.val}</td>
+          </tr>
+        `;
+      }
 
       return `
         <h3>${data.title}</h3>
         <p>${data.desc}</p>
-        <div class="pricing-table-wrapper">
-          <table class="pricing-modal-table">
+        <div class="pricing-table-wrapper" style="overflow-x: auto;">
+          <table class="pricing-modal-table" style="min-width: 800px;">
             <thead>
-              <tr>
-                <th>Fee Description</th>
-                <th style="text-align: right;">Amount</th>
-              </tr>
+              <tr>${headerHtml}</tr>
             </thead>
             <tbody>
               ${rowsHtml}
-              <tr class="total-row">
-                <td>Grand Total</td>
-                <td style="text-align: right;">${data.total}</td>
-              </tr>
+              ${initialFeesHtml}
+              ${totalRowHtml}
             </tbody>
           </table>
         </div>
-        <a href="#enroll" class="btn-primary" onclick="document.getElementById('pricingModal').classList.remove('active'); document.body.style.overflow = '';">Enroll Now</a>
+        <div style="display: flex; justify-content: flex-end;">
+          <a href="#enroll" class="btn-primary" onclick="document.getElementById('pricingModal').classList.remove('active'); document.body.style.overflow = '';">Enroll Now</a>
+        </div>
       `;
     }
 
