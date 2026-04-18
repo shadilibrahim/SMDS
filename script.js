@@ -544,7 +544,12 @@
           ["1st Time", "10 Classes", "600 AED", "100 AED", "105 AED", "20 AED", "525 AED", "300 AED", "825 AED"],
           ["2nd Time", "10 Classes", "600 AED", "100 AED", "105 AED", "20 AED", "525 AED", "300 AED", "825 AED"]
         ],
-        totalRowConfig: { label: "Total Cost", colspan: 8, val: "1650 AED" }
+        totalRowConfig: { label: "Total Cost", colspan: 8, val: "1650 AED" },
+        additionalNotes: [
+          "5% VAT is strictly applicable on all driving classes and RTA fees.",
+          "Additional charges apply for mandatory RTA Eye Test and Medical.",
+          "Additional fees apply for extra classes required due to test failure."
+        ]
       },
       beginner: {
         title: "Comprehensive Beginner Course",
@@ -560,7 +565,11 @@
           ["File Opening", "240 AED"],
           ["Theory Test and Classes", "552.5 AED"]
         ],
-        totalRowConfig: { label: "Total Complete Package (Including Initial Fees)", colspan: 8, val: "4622.5 AED" }
+        totalRowConfig: { label: "Total Complete Package (Including Initial Fees)", colspan: 8, val: "4622.5 AED" },
+        additionalNotes: [
+          "5% VAT is strictly applicable on all driving classes and RTA fees.",
+          "In case of road test failure, mandatory refresher classes (additional classes fee) and re-test booking fee will apply."
+        ]
       },
       license: {
         title: "License Holder Course",
@@ -570,7 +579,12 @@
           ["1st Time", "5", "300 AED", "250 AED", "105 AED", "27.5 AED", "682.5 AED", "N/A", "682.5 AED"],
           ["2nd Time (Fail Case)", "5", "300 AED", "250 AED", "105 AED", "27.5 AED", "577.5 AED", "300 AED", "877.5 AED"]
         ],
-        totalRowConfig: null
+        totalRowConfig: null,
+        additionalNotes: [
+          "5% VAT is strictly applicable on all driving classes and RTA fees.",
+          "Additional charges apply for mandatory RTA Eye Test and File Opening.",
+          "Any required extensions beyond 5 classes will incur standard class fees."
+        ]
       }
     };
 
@@ -582,7 +596,7 @@
       
       let rowsHtml = data.rows.map(row => 
         `<tr>
-          ${row.map(cell => `<td>${cell}</td>`).join('')}
+          ${row.map((cell, idx) => `<td data-label="${data.headers[idx]}">${cell}</td>`).join('')}
         </tr>`
       ).join('');
 
@@ -591,8 +605,8 @@
       if (data.initialFees) {
         initialFeesHtml = data.initialFees.map(fee => 
           `<tr style="background: rgba(255,255,255,0.02);">
-            <td colspan="${data.headers.length - 1}" style="text-align: right; font-weight: 500;">${fee[0]}</td>
-            <td style="font-weight: 600; color: var(--yellow);">${fee[1]}</td>
+            <td colspan="${data.headers.length - 1}" data-label="Initial Fee Item" style="text-align: right; font-weight: 500;">${fee[0]}</td>
+            <td data-label="Amount" style="font-weight: 600; color: var(--yellow);">${fee[1]}</td>
           </tr>`
         ).join('');
       }
@@ -601,17 +615,29 @@
       if (data.totalRowConfig) {
         totalRowHtml = `
           <tr class="total-row">
-            <td colspan="${data.totalRowConfig.colspan}" style="text-align: right;">${data.totalRowConfig.label}</td>
-            <td>${data.totalRowConfig.val}</td>
+            <td colspan="${data.totalRowConfig.colspan}" data-label="Summary" style="text-align: right;">${data.totalRowConfig.label}</td>
+            <td data-label="Amount">${data.totalRowConfig.val}</td>
           </tr>
+        `;
+      }
+      
+      let notesHtml = "";
+      if (data.additionalNotes && data.additionalNotes.length > 0) {
+        notesHtml = `
+          <div style="margin-bottom: 24px;">
+            <strong style="color: var(--yellow); font-size: 14px;">Additional Charges & Notes:</strong>
+            <ul style="color: var(--text-muted); font-size: 13px; padding-left: 20px; margin-top: 8px;">
+              ${data.additionalNotes.map(note => `<li>${note}</li>`).join('')}
+            </ul>
+          </div>
         `;
       }
 
       return `
         <h3>${data.title}</h3>
         <p>${data.desc}</p>
-        <div class="pricing-table-wrapper" style="overflow-x: auto;">
-          <table class="pricing-modal-table" style="min-width: 800px;">
+        <div class="pricing-table-wrapper">
+          <table class="pricing-modal-table">
             <thead>
               <tr>${headerHtml}</tr>
             </thead>
@@ -622,6 +648,7 @@
             </tbody>
           </table>
         </div>
+        ${notesHtml}
         <div style="display: flex; justify-content: flex-end;">
           <a href="#enroll" class="btn-primary" onclick="document.getElementById('pricingModal').classList.remove('active'); document.body.style.overflow = '';">Enroll Now</a>
         </div>
