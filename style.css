@@ -2254,4 +2254,15 @@ button { cursor: pointer; font-family: inherit; }
   font-size: 13px;
   margin-right: 4px;
 }
+
+.price-row.highlight-manual {
+  border-color: var(--yellow);
+  background: rgba(240, 196, 25, 0.05);
+  box-shadow: 0 0 15px rgba(240, 196, 25, 0.1);
+}
+
+.price-row.highlight-manual .price-label {
+  color: #fff;
+}
+
 }
