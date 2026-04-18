@@ -493,21 +493,27 @@
     // Start auto animation
     requestAnimationFrame(autoAnimate);
 
+    const handle = document.getElementById('carSliderHandle');
+
     // Mouse Events
-    slider.addEventListener('mousedown', (e) => {
-      isDragging = true;
-      updateSlider(e);
-    });
+    if (handle) {
+      handle.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        updateSlider(e);
+      });
+    }
     window.addEventListener('mouseup', () => { isDragging = false; });
     window.addEventListener('mousemove', (e) => {
       if (isDragging) updateSlider(e);
     });
 
     // Touch Events
-    slider.addEventListener('touchstart', (e) => {
-      isDragging = true;
-      updateSlider(e);
-    }, { passive: true });
+    if (handle) {
+      handle.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        updateSlider(e);
+      }, { passive: true });
+    }
     
     window.addEventListener('touchend', () => { isDragging = false; });
     window.addEventListener('touchcancel', () => { isDragging = false; });
