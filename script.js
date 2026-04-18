@@ -9,9 +9,9 @@
   // ── Configuration ──────────────────────────────────────────────────────────
   const TOTAL_FRAMES = 192;
   const FRAME_PATH = (n) => {
-    // Relative path to the 3d frames folder (from oFFICE/index.html → ../3d/)
+    // Relative path to the 3d frames folder
     const padded = String(n).padStart(3, '0');
-    return `../3d/ezgif-frame-${padded}.jpg`;
+    return `./3d/ezgif-frame-${padded}.jpg`;
   };
 
   // ── State ──────────────────────────────────────────────────────────────────
@@ -59,9 +59,10 @@
     const img = images[index];
     if (!img?.complete || !img.naturalWidth) return;
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // Set smoothing for better performance vs quality balance
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'low'; 
 
-    // Cover fit — center the image and scale to fill viewport
     const w = canvas.width;
     const h = canvas.height;
     const imgAspect = img.naturalWidth / img.naturalHeight;
@@ -70,11 +71,10 @@
     let drawW, drawH, drawX, drawY;
 
     if (w <= 768) {
-      // Mobile view: Zoom out so the complete 3D car is visible without severe cropping
-      drawW = w * 1.5; // Show 150% of screen width (much less cropped than default cover)
+      // Mobile view: Zoom out so the complete 3D car is visible
+      drawW = w * 1.5; 
       drawH = drawW / imgAspect;
       drawX = (w - drawW) / 2;
-      // Push car slightly towards the lower half so text at top is totally clear
       drawY = h * 0.55 - drawH * 0.5;
     } else {
       // Desktop view: Full cover
@@ -89,16 +89,8 @@
       drawY = (h - drawH) / 2;
     }
 
-    if (w <= 768) {
-      // On mobile, filling the empty top/bottom edges by smearing edge pixels
-      if (drawY > 0) {
-        ctx.drawImage(img, 0, 0, img.naturalWidth, 1, 0, 0, w, drawY + 2);
-      }
-      if (drawY + drawH < h) {
-        ctx.drawImage(img, 0, img.naturalHeight - 1, img.naturalWidth, 1, 0, drawY + drawH - 2, w, h - (drawY + drawH) + 2);
-      }
-    }
-
+    // Only clear if we aren't covering the whole canvas (optimization)
+    ctx.clearRect(0, 0, w, h);
     ctx.drawImage(img, drawX, drawY, drawW, drawH);
   }
 
@@ -209,8 +201,8 @@
     }
 
     function animate() {
-      // Smooth lerp from current frame to target
-      animFrame = lerp(animFrame, targetFrame, 0.12);
+      // Snappier lerp for faster response
+      animFrame = lerp(animFrame, targetFrame, 0.2);
       const frameIdx = Math.round(animFrame);
 
       if (frameIdx !== currentFrame) {
