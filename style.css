@@ -2218,3 +2218,40 @@ button { cursor: pointer; font-family: inherit; }
   background: rgba(255,255,255,0.05);
   color: #fff;
 }
+
+.transmission-prices {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+}
+
+.price-label {
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+.price-val {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--yellow);
+}
+
+.price-currency {
+  font-size: 13px;
+  margin-right: 4px;
+}
+}
