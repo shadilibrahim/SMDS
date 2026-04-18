@@ -2266,19 +2266,3 @@ button { cursor: pointer; font-family: inherit; }
 }
 
 }
-
-.dirham-icon {
-  display: inline-block;
-  vertical-align: middle;
-  height: 1.1em;
-  width: auto;
-  margin-right: 4px;
-  position: relative;
-  top: -1px;
-  color: inherit;
-}
-
-.price-val .dirham-icon {
-  height: 0.9em;
-  margin-right: 2px;
-}

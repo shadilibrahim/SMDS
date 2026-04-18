@@ -527,18 +527,16 @@
     
     if (!modal || !modalContent) return;
 
-    const AED_ICON = `<img src="Asset/UAE_Dirham_Symbol.svg" class="dirham-icon" alt=""> `;
-
     const tableData = {
       emirati: {
         title: "Emirati National Course",
         desc: "Complete breakdown of fees for UAE Nationals.",
         headers: ["Stage", "No. Of Classes", "Classes Fee", "Registration", "Training Card", "Vat 5%", "Total", "Test Fee", "Grand Total"],
         rows: [
-          ["1st Time", "10 Classes", `600 ${AED_ICON}`, `100 ${AED_ICON}`, `105 ${AED_ICON}`, `20 ${AED_ICON}`, `525 ${AED_ICON}`, `300 ${AED_ICON}`, `825 ${AED_ICON}`],
-          ["2nd Time", "10 Classes", `600 ${AED_ICON}`, `100 ${AED_ICON}`, `105 ${AED_ICON}`, `20 ${AED_ICON}`, `525 ${AED_ICON}`, `300 ${AED_ICON}`, `825 ${AED_ICON}`]
+          ["1st Time", "10 Classes", "600 AED", "100 AED", "105 AED", "20 AED", "525 AED", "300 AED", "825 AED"],
+          ["2nd Time", "10 Classes", "600 AED", "100 AED", "105 AED", "20 AED", "525 AED", "300 AED", "825 AED"]
         ],
-        totalRowConfig: { label: "Total Cost", colspan: 8, val: `1650 ${AED_ICON}` },
+        totalRowConfig: { label: "Total Cost", colspan: 8, val: "1650 AED" },
         additionalNotes: [
           "5% VAT is strictly applicable on all driving classes and RTA fees.",
           "Additional charges apply for mandatory RTA Eye Test and Medical.",
@@ -550,16 +548,16 @@
         desc: "All-inclusive structure for first-time drivers.",
         headers: ["Stage", "No. Of Classes", "Classes Fee", "Registration", "Training Card", "Vat 5%", "Total", "Test Fee", "Grand Total"],
         rows: [
-          ["Parking", "30", `1800 ${AED_ICON}`, `100 ${AED_ICON}`, `105 ${AED_ICON}`, `25 ${AED_ICON}`, `525 ${AED_ICON}`, `300 ${AED_ICON}`, `825 ${AED_ICON}`],
-          ["Assessment", "15", `900 ${AED_ICON}`, `200 ${AED_ICON}`, `105 ${AED_ICON}`, `55 ${AED_ICON}`, `1260 ${AED_ICON}`, `400 ${AED_ICON}`, `1660 ${AED_ICON}`],
-          ["Final", "10", `600 ${AED_ICON}`, `200 ${AED_ICON}`, `105 ${AED_ICON}`, `40 ${AED_ICON}`, `945 ${AED_ICON}`, `300 ${AED_ICON}`, `1245 ${AED_ICON}`]
+          ["Parking", "30", "1800 AED", "100 AED", "105 AED", "25 AED", "525 AED", "300 AED", "825 AED"],
+          ["Assessment", "15", "900 AED", "200 AED", "105 AED", "55 AED", "1260 AED", "400 AED", "1660 AED"],
+          ["Final", "10", "600 AED", "200 AED", "105 AED", "40 AED", "945 AED", "300 AED", "1245 AED"]
         ],
         initialFees: [
-          ["Eye Test", `100 ${AED_ICON}`],
-          ["File Opening", `240 ${AED_ICON}`],
-          ["Theory Test and Classes", `552.5 ${AED_ICON}`]
+          ["Eye Test", "100 AED"],
+          ["File Opening", "240 AED"],
+          ["Theory Test and Classes", "552.5 AED"]
         ],
-        totalRowConfig: { label: "Total Complete Package (Including Initial Fees)", colspan: 8, val: `4622.5 ${AED_ICON}` },
+        totalRowConfig: { label: "Total Complete Package (Including Initial Fees)", colspan: 8, val: "4622.5 AED" },
         additionalNotes: [
           "5% VAT is strictly applicable on all driving classes and RTA fees.",
           "In case of road test failure, mandatory refresher classes (additional classes fee) and re-test booking fee will apply."
@@ -570,8 +568,8 @@
         desc: "For those who hold a prior driving license from another country.",
         headers: ["Stage", "No. Of Classes", "Classes Fee", "Registration", "Training Card", "Vat 5%", "Total", "Test Fee", "Grand Total"],
         rows: [
-          ["1st Time", "5", `300 ${AED_ICON}`, `250 ${AED_ICON}`, `105 ${AED_ICON}`, `27.5 ${AED_ICON}`, `682.5 ${AED_ICON}`, "N/A", `682.5 ${AED_ICON}`],
-          ["2nd Time (Fail Case)", "5", `300 ${AED_ICON}`, `250 ${AED_ICON}`, `105 ${AED_ICON}`, `27.5 ${AED_ICON}`, `577.5 ${AED_ICON}`, `300 ${AED_ICON}`, `877.5 ${AED_ICON}`]
+          ["1st Time", "5", "300 AED", "250 AED", "105 AED", "27.5 AED", "682.5 AED", "N/A", "682.5 AED"],
+          ["2nd Time (Fail Case)", "5", "300 AED", "250 AED", "105 AED", "27.5 AED", "577.5 AED", "300 AED", "877.5 AED"]
         ],
         totalRowConfig: null,
         additionalNotes: [
@@ -597,8 +595,8 @@
         
         modeToggleHtml = `
           <div class="transmission-toggle-group">
-            <button class="toggle-btn ${transmission === 'manual' ? 'active' : ''}" data-mode="manual">Manual (${classRate} ${AED_ICON}/Class)</button>
-            <button class="toggle-btn ${transmission === 'auto' ? 'active' : ''}" data-mode="auto">Automatic (70 ${AED_ICON}/Class)</button>
+            <button class="toggle-btn ${transmission === 'manual' ? 'active' : ''}" data-mode="manual">Manual (60 AED/Class)</button>
+            <button class="toggle-btn ${transmission === 'auto' ? 'active' : ''}" data-mode="auto">Automatic (70 AED/Class)</button>
           </div>
         `;
 
@@ -618,15 +616,15 @@
           const newGrandTotal = oldGrandTotal + diff;
           
           const newRow = [...row];
-          newRow[2] = `${classFee} ${AED_ICON}`;
-          newRow[8] = `${newGrandTotal} ${AED_ICON}`;
+          newRow[2] = `${classFee} AED`;
+          newRow[8] = `${newGrandTotal} AED`;
           return newRow;
         });
 
         const totalDiff = (classRate - 60) * 55; // 30+15+10 = 55 classes total
         data.totalRowConfig = {
           ...data.totalRowConfig,
-          val: `${4622.5 + totalDiff} ${AED_ICON}`
+          val: `${4622.5 + totalDiff} AED`
         };
       }
       
