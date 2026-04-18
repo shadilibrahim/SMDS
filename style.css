@@ -372,7 +372,7 @@ button { cursor: pointer; font-family: inherit; }
     right: 50%;
     transform: translateX(50%); /* strictly centered on screen */
     top: auto;
-    bottom: 25%;
+    bottom: 8%;
     width: min(600px, 80vw); /* much bigger on tablets */
     z-index: 4; /* Keep it in the foreground above gradients */
   }
