@@ -1976,7 +1976,7 @@ button { cursor: pointer; font-family: inherit; }
     width: min(400px, 90vw); /* bigger on mobile phones */
     right: 50%;
     transform: translateX(50%); /* centered */
-    bottom: 25%;
+    bottom: 8%;
   }
 
   .section-title { letter-spacing: -1px; }
