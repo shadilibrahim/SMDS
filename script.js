@@ -580,13 +580,57 @@
       }
     };
 
-    function renderTable(key) {
-      const data = tableData[key];
+    let currentTransmission = 'manual'; // Default to manual
+    let currentActiveKey = '';
+
+    function renderTable(key, transmission = 'manual') {
+      const data = {...tableData[key]};
       if(!data) return "";
+      
+      let modeToggleHtml = "";
+      let rowsWithCalculatedPrices = data.rows;
+
+      if (key === 'beginner') {
+        const classRate = transmission === 'manual' ? 60 : 70;
+        
+        modeToggleHtml = `
+          <div class="transmission-toggle-group">
+            <button class="toggle-btn ${transmission === 'manual' ? 'active' : ''}" data-mode="manual">Manual (60 AED/Class)</button>
+            <button class="toggle-btn ${transmission === 'auto' ? 'active' : ''}" data-mode="auto">Automatic (70 AED/Class)</button>
+          </div>
+        `;
+
+        // Update rows based on class rate
+        rowsWithCalculatedPrices = data.rows.map(row => {
+          const classCount = parseInt(row[1]);
+          const classFee = classCount * classRate;
+          const reg = parseInt(row[3]);
+          const card = parseInt(row[4]);
+          
+          // Using slightly adjusted logic for VAT and Total to keep consistency with your totals
+          // Total = ClassFee + Reg + Card + VAT. 
+          // For Manual Parking: 1800 + 100 + 105 = 2005. VAT 25? (roughly 1.2%). 
+          // I will just scale the Class Fee and update the Grand Total.
+          const diff = (classRate - 60) * classCount;
+          const oldGrandTotal = parseFloat(row[8]);
+          const newGrandTotal = oldGrandTotal + diff;
+          
+          const newRow = [...row];
+          newRow[2] = `${classFee} AED`;
+          newRow[8] = `${newGrandTotal} AED`;
+          return newRow;
+        });
+
+        const totalDiff = (classRate - 60) * 55; // 30+15+10 = 55 classes total
+        data.totalRowConfig = {
+          ...data.totalRowConfig,
+          val: `${4622.5 + totalDiff} AED`
+        };
+      }
       
       let headerHtml = data.headers.map(th => `<th>${th}</th>`).join('');
       
-      let rowsHtml = data.rows.map(row => 
+      let rowsHtml = rowsWithCalculatedPrices.map(row => 
         `<tr>
           ${row.map((cell, idx) => `<td data-label="${data.headers[idx]}">${cell}</td>`).join('')}
         </tr>`
@@ -628,6 +672,7 @@
       return `
         <h3>${data.title}</h3>
         <p>${data.desc}</p>
+        ${modeToggleHtml}
         <div class="pricing-table-wrapper">
           <table class="pricing-modal-table">
             <thead>
@@ -651,10 +696,23 @@
       btn.addEventListener('click', (e) => {
         e.preventDefault();
         const key = btn.getAttribute('data-modal');
-        modalContent.innerHTML = renderTable(key);
+        currentActiveKey = key;
+        currentTransmission = 'manual'; // Reset to manual on new open
+        modalContent.innerHTML = renderTable(key, currentTransmission);
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
       });
+    });
+
+    // Handle toggle clicks via delegation
+    modalContent.addEventListener('click', (e) => {
+      if (e.target.classList.contains('toggle-btn')) {
+        const mode = e.target.getAttribute('data-mode');
+        if (mode !== currentTransmission) {
+          currentTransmission = mode;
+          modalContent.innerHTML = renderTable(currentActiveKey, currentTransmission);
+        }
+      }
     });
 
     closeBtn.addEventListener('click', () => {
